@@ -4,7 +4,7 @@ import { collection, onSnapshot } from "firebase/firestore";
 import { firestore } from "../../firebase.config";
 import TaskList from "./TaskList";
 
-const Tasks = () => {
+const Tasks = ({nav}) => {
   const [list, setTodoList] = useState();
   const collectionRef = collection(firestore, "tasks");
 
@@ -31,7 +31,7 @@ const Tasks = () => {
   return (
     <View>
       {list !== undefined ? (
-        <TaskList props={list} />
+        <TaskList nav={nav} props={list} />
       ) : (
         <ActivityIndicator size="small" />
       )}

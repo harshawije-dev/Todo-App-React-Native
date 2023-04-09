@@ -12,3 +12,7 @@ export const useAddDoc = async (values) => {
 export const useSetDoc = () => {
   return null;
 };
+
+export const useGetDoc = () => {
+  return null;
+};

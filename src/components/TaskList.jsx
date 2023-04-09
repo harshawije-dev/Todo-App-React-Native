@@ -2,12 +2,12 @@ import { View, FlatList, StyleSheet } from "react-native";
 import React from "react";
 import Task from "./Task";
 
-const TaskList = ({ props }) => {
+const TaskList = ({ props, nav }) => {
   return (
     <View style={styles.container}>
       <FlatList
         data={props}
-        renderItem={({ item }) => <Task data={item} styles={styles.item} />}
+        renderItem={({ item }) => <Task data={item} styles={styles.item} nav={nav} />}
       />
     </View>
   );

@@ -1,14 +1,14 @@
-import { View, Text, SafeAreaView, StyleSheet } from "react-native";
+import { View, SafeAreaView, StyleSheet } from "react-native";
 import React from "react";
 import NewTask from "../components/NewTask";
 import Tasks from "../components/Tasks";
 
-const HomeScreen = () => {
+const HomeScreen = ({ navigation }) => {
   return (
     <SafeAreaView style={styles.safeView}>
       <View style={styles.container}>
         <NewTask />
-        <Tasks />
+        <Tasks nav={navigation} />
       </View>
     </SafeAreaView>
   );
