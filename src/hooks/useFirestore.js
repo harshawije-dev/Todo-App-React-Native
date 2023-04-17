@@ -1,4 +1,4 @@
-import { setDoc, doc, addDoc } from "firebase/firestore";
+import { setDoc, doc, addDoc, getDoc } from "firebase/firestore";
 import { collectionRef, firestore } from "../../firebase.config";
 
 export const useAddDoc = async (values) => {
@@ -13,6 +13,15 @@ export const useSetDoc = () => {
   return null;
 };
 
-export const useGetDoc = () => {
-  return null;
+export const useGetDoc = async (id) => {
+  try {
+    const ref = doc(firestore, "tasks", id);
+    const snapshot = await getDoc(ref);
+
+    if (snapshot.exists()) {
+      return snapshot.data();
+    }
+  } catch (error) {
+    console.log(error);
+  }
 };
