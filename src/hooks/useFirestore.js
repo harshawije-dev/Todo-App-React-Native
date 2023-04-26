@@ -1,4 +1,4 @@
-import { setDoc, doc, addDoc, getDoc } from "firebase/firestore";
+import { setDoc, doc, addDoc, getDoc } from "firebase/firestore/lite";
 import { collectionRef, firestore } from "../../firebase.config";
 
 export const useAddDoc = async (values) => {
@@ -9,8 +9,21 @@ export const useAddDoc = async (values) => {
   });
 };
 
-export const useSetDoc = () => {
-  return null;
+export const useSetDoc = async (...document) => {
+  const [updatedDoc] = document;
+  const { id } = updatedDoc;
+
+  try {
+    await setDoc(doc(collectionRef, "tasks", id), {
+      task: updatedDoc.task,
+      date: updatedDoc.date,
+    });
+
+    return "Document has been updated";
+  } catch (error) {
+    
+    return error;
+  }
 };
 
 export const useGetDoc = async (id) => {
